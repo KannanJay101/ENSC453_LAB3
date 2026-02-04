@@ -1,4 +1,4 @@
-# ENSC 453/894 — Lab Assignment 3
+# ENSC 453 — Lab Assignment 3
 
 **FPGA GEMM with Vitis HLS (Alveo U50)**
 
