@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <omp.h>
+//#include <omp.h>
 #include <immintrin.h>
 #include "my_timer.h"
 
@@ -8,7 +8,7 @@
 #define NJ 4096
 #define NK 4096
 
-#define BS 256 // Tile Size
+#define BS 32 // Tile Size
 #define UNROLL 4
 
 #define min(a, b) (((a) < (b)) ? (a) : (b))
@@ -40,17 +40,27 @@ static void print_array_sum(float C[NI * NJ])
   printf("sum of C array = %f\n", sum);
 }
 
+#pragma HLS INTERFACE m_axi port=A offset=slave bundle=gmem0
+#pragma HLS INTERFACE m_axi port=B offset=slave bundle=gmem1
+#pragma HLS INTERFACE m_axi port=C offset=slave bundle=gmem0
+// control signals
+#pragma HLS INTERFACE s_axilite port=A bundle=control
+#pragma HLS INTERFACE s_axilite port=B bundle=control
+#pragma HLS INTERFACE s_axilite port=C bundle=control
+#pragma HLS INTERFACE s_axilite port=return bundle=control
+
 // =========================================================================
 // Variation 7: 3D Tiling + Optimized i-k-j Order + OpenMP + Vectorization + Unrolling Strat
 // =========================================================================
 static void kernel_gemm(float C[NI * NJ], float A[NI * NK], float B[NK * NJ], float alpha, float beta)
 {
+  //#pragma HLS PIPELINE II=1
   int i, j, k;
   int ii, jj, kk;
 
   // 1. Parallelize the Outer Loops (Tiles)
   // We use collapse(2) to give OpenMP more chunks to distribute to threads.
-  #pragma omp parallel for collapse(2) schedule(dynamic) private(ii, jj, kk, i, j, k)
+  
   for (ii = 0; ii < NI; ii += BS)
   {
     for (jj = 0; jj < NJ; jj += BS)
@@ -65,7 +75,7 @@ static void kernel_gemm(float C[NI * NJ], float A[NI * NK], float B[NK * NJ], fl
       
         for (i = ii; i < i_max; i++)
         {
-          #pragma omp parallel for simd
+         // #pragma omp parallel for simd
           for (j = jj; j < j_max; j++)
             C[i * NJ + j] *= beta;
         }
@@ -79,9 +89,7 @@ static void kernel_gemm(float C[NI * NJ], float A[NI * NK], float B[NK * NJ], fl
         // --- REGISTER BLOCKING (4 rows at a time) ---
         // We iterate 'i' by 4.
         for (i = ii; i < i_max - (UNROLL - 1); i += UNROLL)                         // UNROLL is 4, so we iterate by 4 
-                                                                                    // i_max - (UNROLL - 1) is a safety check to avoid out of bounds access
-        
-        
+                                                                                    // i_max - (UNROLL - 1) is a safety check to avoid out of bounds access        
         {
 
           for (k = kk; k < k_max; k++)
@@ -96,7 +104,8 @@ static void kernel_gemm(float C[NI * NJ], float A[NI * NK], float B[NK * NJ], fl
             
             
 
-            #pragma omp simd
+           // #pragma omp simd
+           //#pragma HLS PIPELINE II=1
             for (j = jj; j < j_max; j++)
             {
               int b_idx = k * NJ + j;
@@ -116,7 +125,7 @@ static void kernel_gemm(float C[NI * NJ], float A[NI * NK], float B[NK * NJ], fl
           for (k = kk; k < k_max; k++)
           {
             float val_a = alpha * A[i * NK + k];
-            #pragma omp simd
+           // #pragma omp simd
             for (j = jj; j < j_max; j++)
             {
               C[i * NJ + j] += val_a * B[k * NJ + j];
@@ -142,15 +151,6 @@ int main(int argc, char **argv)
   timespec timer = tic();
 
   /* --- RUN THE KERNEL --- */
-  /* UNCOMMENT ONE LINE BELOW TO TEST A SPECIFIC STRATEGY */
-
-  // kernel_gemm_2d_ij(C, A, B, 1.5, 2.5);        // Strategy 1: Tiling i, j
-  // kernel_gemm_2d_ik(C, A, B, 1.5, 2.5);      // Strategy 2: Tiling i, k
-  // kernel_gemm_2d_jk(C, A, B, 1.5, 2.5);      // Strategy 3: Tiling j, k
-  // kernel_gemm_3D(C, A, B, 1.5, 2.5);         // Strategy 4: Tiling i, j, k
-  // kernel_gemm3D_Optmized(C, A, B, 1.5, 2.5);
-  // kernel_gemm_vect(C, A, B, 1.5, 2.5);
-
   //Best Optmized Time
    kernel_gemm(C, A, B, 1.5, 2.5);
 
@@ -160,7 +160,7 @@ int main(int argc, char **argv)
   /* Print results. */
   print_array_sum(C);
   printf("Size of Tile: %i\n", BS);
-  printf("OpenMP will use up to %d threads\n", omp_get_max_threads());
+  //printf("OpenMP will use up to %d threads\n", omp_get_max_threads());
 
   /* free memory for A, B, C */
   free(A);

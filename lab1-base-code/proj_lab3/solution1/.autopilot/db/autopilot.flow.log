@@ -1,0 +1,69 @@
+INFO-FLOW: Workspace /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1 opened at Thu Feb 12 18:14:47 PST 2026
+Execute       send_msg_by_id INFO @200-1505@%s%s default  vivado 
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Execute       get_config_interface -m_axi_latency 
+Execute       get_config_interface -m_axi_alignment_byte_size 
+Execute       get_config_interface -m_axi_max_widen_bitwidth 
+Execute       get_config_interface -default_interface 
+Execute       get_config_interface -m_axi_offset 
+Execute       get_config_rtl -register_reset_num 
+Execute     set_part xcu50-fsvh2104-2-e 
+INFO: [HLS 200-1510] Running: set_part xcu50-fsvh2104-2-e 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vivado/2020.2/data:/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/data
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data single -quiet 
+DBG:HLSDevice: Trying to load device library: /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vivado/2020.2/data/parts/arch.xml
+Command       ap_part_info done; 0.87 sec.
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
+Execute       add_library xilinx/virtexuplus/virtexuplus:xcu50:-fsvh2104:-2-e 
+Execute         get_default_platform 
+Execute         open_platform DefaultPlatform 
+Execute         ap_part_info -data single -name xcu50-fsvh2104-2-e 
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data resources 
+Execute         config_chip_info -resource {SLICE 108960} {LUT 871680} {FF 1743360} {DSP 5952} {BRAM 2688} {URAM 640} {SLR 2} 
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info 
+Execute         config_chip_info -speed medium 
+Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info 
+Execute         config_library_info -library virtexuplus_medium 
+Execute         config_library_info -family virtexuplus 
+Execute         config_library_info -part xcu50:-fsvh2104:-2-e 
+Execute         import_lib /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/virtexuplus/virtexuplus 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute             source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute             source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/virtexuplus_dsp48e2.hlp 
+Execute         source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute             source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command       add_library done; 0.11 sec.
+INFO: [HLS 200-10] Setting target device to 'xcu50-fsvh2104-2-e'
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 1 sec.
+Execute     create_clock -period 3.33 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 3.33 -name default 
+Execute       ap_set_clock -name default -period 3.33 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.33ns.
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
+ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s).
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; error code: 2; 0.24 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.32 seconds. CPU system time: 0.15 seconds. Elapsed time: 0.24 seconds; current allocated memory: 195.757 MB.
+Command   ap_source done; error code: 1; 1.25 sec.
+Execute   cleanup_all 
