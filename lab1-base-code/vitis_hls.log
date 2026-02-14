@@ -7,7 +7,7 @@
 source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'kja56' on host 'fas-rla-31.fas.sfu.ca' (Linux_x86_64 version 4.18.0-553.97.1.el8_10.x86_64) on Thu Feb 12 18:14:47 PST 2026
+INFO: [HLS 200-10] For user 'kja56' on host 'fas-rla-31.fas.sfu.ca' (Linux_x86_64 version 4.18.0-553.97.1.el8_10.x86_64) on Fri Feb 13 16:06:08 PST 2026
 INFO: [HLS 200-10] On os "AlmaLinux release 8.10 (Cerulean Leopard)"
 INFO: [HLS 200-10] In directory '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code'
 Sourcing Tcl script 'run_hls.tcl'
@@ -41,7 +41,7 @@ collect2: error: ld returned 1 exit status
 make: *** [Makefile.rules:393: csim.exe] Error 1
 ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s).
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.32 seconds. CPU system time: 0.15 seconds. Elapsed time: 0.24 seconds; current allocated memory: 195.757 MB.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.33 seconds. CPU system time: 0.16 seconds. Elapsed time: 0.25 seconds; current allocated memory: 195.757 MB.
 4
     while executing
 "source run_hls.tcl"
@@ -49,4 +49,4 @@ INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.32 seconds. CP
     invoked from within
 "uplevel \#0 [list source $arg] "
 
-INFO: [Common 17-206] Exiting vitis_hls at Thu Feb 12 18:14:48 2026...
+INFO: [Common 17-206] Exiting vitis_hls at Fri Feb 13 16:06:09 2026...

@@ -1,4 +1,4 @@
-INFO-FLOW: Workspace /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1 opened at Thu Feb 12 18:14:47 PST 2026
+INFO-FLOW: Workspace /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1 opened at Fri Feb 13 16:06:08 PST 2026
 Execute       send_msg_by_id INFO @200-1505@%s%s default  vivado 
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Execute       get_config_interface -m_axi_latency 
@@ -63,7 +63,7 @@ INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
 Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
 ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s).
 INFO: [SIM 211-3] *************** CSIM finish ***************
-Command     csim_design done; error code: 2; 0.24 sec.
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.32 seconds. CPU system time: 0.15 seconds. Elapsed time: 0.24 seconds; current allocated memory: 195.757 MB.
-Command   ap_source done; error code: 1; 1.25 sec.
+Command     csim_design done; error code: 2; 0.25 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.33 seconds. CPU system time: 0.16 seconds. Elapsed time: 0.25 seconds; current allocated memory: 195.757 MB.
+Command   ap_source done; error code: 1; 1.26 sec.
 Execute   cleanup_all 
