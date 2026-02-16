@@ -1,0 +1,26 @@
+# Vitis HLS
+proj_lab3/
+vitis_hls.log
+*.log
+
+# Compiled binaries
+mm
+csim.exe
+*.exe
+*.o
+*.obj
+*.d
+*.a
+*.so
+
+# Vim
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE (optional - remove .vscode/ line if you want to share editor config)
+.vscode/
