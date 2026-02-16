@@ -36,8 +36,8 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
 
     // --- OUTER LOOPS (Tile Iteration) ---
     // Iterate over the output matrix C in tiles of size BS x BS
-    for (int i = 0; i < ni; i += BS) {
-        for (int j = 0; j < nj; j += BS) {
+    for (int i = 0; i < NI; i += BS) {
+        for (int j = 0; j < NJ; j += BS) {
 
             // LOAD C (Initial Value)
             // If beta != 0, we need to load the existing C tile and scale it
@@ -45,8 +45,8 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
             for (int ii = 0; ii < BS; ii++) {
                 for (int jj = 0; jj < BS; jj++) {
                     #pragma HLS PIPELINE II=1
-                    int global_idx = (i + ii) * nj + (j + jj);
-                    if ((i + ii) < ni && (j + jj) < nj) {
+                    int global_idx = (i + ii) * NJ + (j + jj);
+                    if ((i + ii) < NI && (j + jj) < NJ) {
                          // Apply Beta scaling here immediately
                         buff_C[ii][jj] = C[global_idx] * beta; 
                     } else {
@@ -56,7 +56,7 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
             }
 
             // INNER LOOP (Accumulate A * B)
-            for (int k = 0; k < nk; k += BS) {
+            for (int k = 0; k < NK; k += BS) {
                 
                 // --- PHASE 1: LOAD ---
                 // Load Tile A
@@ -65,8 +65,8 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
                         #pragma HLS PIPELINE II=1
                         int r = i + ii;
                         int c = k + kk;
-                        if (r < ni && c < nk)
-                            buff_A[ii][kk] = A[r * nk + c];
+                        if (r < NI && c < NK)
+                            buff_A[ii][kk] = A[r * NK + c];
                         else
                             buff_A[ii][kk] = 0.0f;
                     }
@@ -78,8 +78,8 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
                         #pragma HLS PIPELINE II=1
                         int r = k + kk;
                         int c = j + jj;
-                        if (r < nk && c < nj)
-                            buff_B[kk][jj] = B[r * nj + c];
+                        if (r < NK && c < NJ)
+                            buff_B[kk][jj] = B[r * NJ + c];
                         else
                             buff_B[kk][jj] = 0.0f;
                     }
@@ -111,8 +111,8 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
             for (int ii = 0; ii < BS; ii++) {
                 for (int jj = 0; jj < BS; jj++) {
                     #pragma HLS PIPELINE II=1
-                    int global_idx = (i + ii) * nj + (j + jj);
-                    if ((i + ii) < ni && (j + jj) < nj) {
+                    int global_idx = (i + ii) * NJ + (j + jj);
+                    if ((i + ii) < NI && (j + jj) < NJ) {
                         C[global_idx] = buff_C[ii][jj];
                     }
                 }

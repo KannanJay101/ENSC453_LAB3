@@ -10,6 +10,6 @@
 
 
 
-void kernel_gemm(float C[NI * NJ], float A[NI * NK], float B[NK * NJ], float alpha, float beta);
+void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, int nj, int nk);
 
 #endif

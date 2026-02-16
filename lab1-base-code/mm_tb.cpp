@@ -34,7 +34,7 @@ int main(int argc, char **argv)
   init_array(C, A, B);
 
   timespec timer = tic();
-  kernel_gemm(C, A, B, 1.5f, 2.5f);
+  kernel_gemm(C, A, B, 1.5f, 2.5f, NI, NJ, NK);
   toc(&timer, "kernel execution");
 
   print_array_sum(C);
