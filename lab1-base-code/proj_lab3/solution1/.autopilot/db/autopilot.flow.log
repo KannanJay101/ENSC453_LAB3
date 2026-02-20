@@ -1,4 +1,4 @@
-INFO-FLOW: Workspace /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1 opened at Sun Feb 15 18:14:32 PST 2026
+INFO-FLOW: Workspace /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1 opened at Wed Feb 18 16:42:04 PST 2026
 Execute       send_msg_by_id INFO @200-1505@%s%s default  vivado 
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Execute       get_config_interface -m_axi_latency 
@@ -14,7 +14,7 @@ INFO-FLOW: DBG:set_part: RDI_DATADIR=/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOO
 Execute       ap_part_info -name xcu50-fsvh2104-2-e -data single -quiet 
 DBG:HLSDevice: Trying to load device library: /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
 DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vivado/2020.2/data/parts/arch.xml
-Command       ap_part_info done; 0.81 sec.
+Command       ap_part_info done; 0.83 sec.
 Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
 Execute       add_library xilinx/virtexuplus/virtexuplus:xcu50:-fsvh2104:-2-e 
 Execute         get_default_platform 
@@ -47,11 +47,10 @@ Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2
 Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
 Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
 Execute           source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
-Command       add_library done; 0.11 sec.
 INFO: [HLS 200-10] Setting target device to 'xcu50-fsvh2104-2-e'
 Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
 Execute       config_compile -quiet -complex-mul-dsp=0 
-Command     set_part done; 0.94 sec.
+Command     set_part done; 0.95 sec.
 Execute     create_clock -period 3.33 -name default 
 INFO: [HLS 200-1510] Running: create_clock -period 3.33 -name default 
 Execute       ap_set_clock -name default -period 3.33 -default=false 
@@ -62,11 +61,10 @@ INFO: [SIM 211-2] *************** CSIM start ***************
 INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
 Execute       ap_part_info -name xcu50-fsvh2104-2-e -data info 
 Execute       source run_sim.tcl 
-Command       ap_source done; 131.68 sec.
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-Command     csim_design done; 131.89 sec.
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 131.97 seconds. CPU system time: 0.22 seconds. Elapsed time: 131.89 seconds; current allocated memory: 211.798 MB.
+Command     csim_design done; 0.34 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.43 seconds. CPU system time: 0.25 seconds. Elapsed time: 0.34 seconds; current allocated memory: 211.824 MB.
 Execute     csynth_design 
 INFO: [HLS 200-1510] Running: csynth_design 
 Execute       get_config_compile -effort 
@@ -79,7 +77,7 @@ Execute       get_config_compile -skip_syncheck
 Execute       get_config_compile -skip_transform 
 Execute       get_config_compile -keep_printf 
 Execute       elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 211.982 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 212.007 MB.
 INFO: [HLS 200-10] Analyzing design file 'mm_kernel.cpp' ... 
 INFO-FLOW: Compiling one TU...
 Execute         get_config_compile -pragma_strict_mode 
@@ -88,7 +86,7 @@ Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info
 INFO-FLOW: Running: GCC PP 39
 INFO-FLOW: Source preprocessing
 Execute         ap_eval exec -ignorestderr /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang mm_kernel.cpp -foptimization-record-file=/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.mm_kernel.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -gcc-toolchain /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0 -fhls -fno-exceptions -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -fno-threadsafe-statics -fno-use-cxa-atexit -I /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/autopilot/39 -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.pp.0.cpp > /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.mm_kernel.cpp.out.log 2> /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.mm_kernel.cpp.err.log 
-INFO-FLOW: Done: GCC PP 39 time: 0.1 seconds per iteration
+INFO-FLOW: Done: GCC PP 39 time: 0 seconds per iteration
 Execute         set_directive_top kernel_gemm -name=kernel_gemm 
 INFO-FLOW: Setting directive 'TOP' name=kernel_gemm 
 INFO-FLOW: Setting directive 'TOP' name=kernel_gemm 
@@ -104,7 +102,7 @@ Execute         clang_tidy xilinx-directive2pragma /local-scratch/localhome/kja5
 INFO-FLOW: exec /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/all.directive.json -fix-errors /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
 Execute         clang_tidy xilinx-constantarray-param,xilinx-remove-assert /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.pp.0.cpp std=gnu++14 -target fpga  
 INFO-FLOW: exec /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-constantarray-param,xilinx-remove-assert -fix-errors /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
-INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 0 seconds per iteration
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 0.1 seconds per iteration
 INFO-FLOW: Calling xilinx-label-all-loops ... 
 Execute         clang_tidy -errorcheck xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.pp.0.cpp std=gnu++14 -target fpga  
 Execute           ap_eval exec -ignorestderr /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang-tidy.mm_kernel.pp.0.cpp.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-top-parameters,xilinx-array-stream-check,xilinx-warn-mayneed-no-ctor-attribute -fix-errors /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang-tidy.mm_kernel.pp.0.cpp.out.log 2> /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang-tidy.mm_kernel.pp.0.cpp.err.log 
@@ -115,7 +113,7 @@ Execute         ap_eval exec -ignorestderr /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_
 Execute         ap_part_info -name xcu50-fsvh2104-2-e -data info 
 INFO-FLOW: compiling source code to llvm bc
 Execute         ap_eval exec -ignorestderr /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.mm_kernel.pp.0.cpp.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/autopilot -I /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.bc > /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.mm_kernel.pp.0.cpp.out.log 2> /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.mm_kernel.pp.0.cpp.err.log 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.13 seconds. CPU system time: 0.08 seconds. Elapsed time: 0.32 seconds; current allocated memory: 213.765 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.23 seconds. CPU system time: 0.16 seconds. Elapsed time: 0.24 seconds; current allocated memory: 213.796 MB.
 INFO-FLOW: Linking Debug ...
 INFO-FLOW: Linking dut bc code.
 Execute         run_link_or_opt -out /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.0.bc -args  "/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/mm_kernel.g.bc"  
@@ -127,9 +125,9 @@ INFO-FLOW:
 INFO-FLOW: Linking math bc lib
 Execute         run_link_or_opt -out /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.2.m1.bc -args /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.1.lower.bc -only-needed /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/lib/libhlsm_39.bc /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/lib/libhlsmc++_39.bc 
 Execute           ap_eval exec -ignorestderr /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/llvm-link /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.1.lower.bc -only-needed /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/lib/libhlsm_39.bc /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/lib/libhlsmc++_39.bc -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.2.m1.bc > /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/llvm-link.a.g.ld.2.m1.bc.out.log 2> /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/llvm-link.a.g.ld.2.m1.bc.err.log 
-Command           ap_eval done; 1.43 sec.
+Command           ap_eval done; 1.18 sec.
 INFO-FLOW: 
-Command         run_link_or_opt done; 1.43 sec.
+Command         run_link_or_opt done; 1.18 sec.
 Execute         run_link_or_opt -opt -out /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.3.fpc.bc -args /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=kernel_gemm -reflow-float-conversion 
 Execute           ap_eval exec -ignorestderr /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/opt.a.g.ld.3.fpc.bc.diag.yml /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=kernel_gemm -reflow-float-conversion -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.3.fpc.bc > /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/opt.a.g.ld.3.fpc.bc.out.log 2> /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/opt.a.g.ld.3.fpc.bc.err.log 
 Command           ap_eval done; 0.42 sec.
@@ -179,45 +177,101 @@ INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
 Execute         is_m_axi_addr64 
 INFO-FLOW: Doing LTO.
 Execute         ap_eval exec -ignorestderr /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.a.g.ld.0.bc.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fhls -mllvm -hls-top-function-name=kernel_gemm -mllvm -hls-db-dir -mllvm /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db -emit-llvm -c -target fpga64-xilinx-none -mllvm -xcl-xmlinfo=/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/kernel.internal.xml -mllvm -top-io-mapping-info=/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/top-io-fe.xml -mllvm -hls-bitcode-version=3.1 -mllvm -reflow-enable-slave-interface-default-setting=true -mllvm -gen-kernel-xml=false -mllvm -default-maxi-offset=off -mllvm -maxi-latency=0 -mllvm -hls-maxi-data-size-in-bits=8 -mllvm -hls-maxi-max-data-size-in-bits=1024 -mllvm -hls-max-widen-size-in-bits=0 -mllvm -xcl-kernel-max-mem-ports=0 -mllvm -maxi-read-trans=16 -mllvm -maxi-write-trans=16 -mllvm -maxi-read-burst-len=16 -mllvm -maxi-write-burst-len=16 -mllvm -reflow-enable-saxi-64bits=0 -mllvm -assume-maxi-align=0 -mllvm -no-unaligned-maxi-accesses -mllvm -reflow-pipeline-style-llvm-setting=0 -mllvm -disable-inlined-alloca-merging=true -x ir /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.ld.5.gdce.bc -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.lto.bc > /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.a.g.ld.0.bc.out.log 2> /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/clang.a.g.ld.0.bc.err.log 
-WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:9:0)
-WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:9:0)
-WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:9:0)
-INFO: [HLS 214-115] Multiple burst reads of length 32 and bit width 32 in loop 'VITIS_LOOP_46_4'(mm_kernel.cpp:46:34) has been inferred on port 'gmem0' (mm_kernel.cpp:46:34)
-INFO: [HLS 214-115] Multiple burst reads of length 32 and bit width 32 in loop 'VITIS_LOOP_64_7'(mm_kernel.cpp:64:38) has been inferred on port 'gmem0' (mm_kernel.cpp:64:38)
-INFO: [HLS 214-115] Multiple burst reads of length 32 and bit width 32 in loop 'VITIS_LOOP_77_9'(mm_kernel.cpp:77:38) has been inferred on port 'gmem1' (mm_kernel.cpp:77:38)
-INFO: [HLS 214-115] Multiple burst writes of length 32 and bit width 32 in loop 'VITIS_LOOP_112_14'(mm_kernel.cpp:112:36) has been inferred on port 'gmem0' (mm_kernel.cpp:112:36)
+INFO: [HLS 214-178] Inlining function 'load_input_tile(float*, float (*) [32], int, int, int, int)' into 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+INFO: [HLS 214-178] Inlining function 'store_output_tile(float*, float (*) [32], int, int, int, int)' into 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
 INFO-FLOW: DBG:CMD: copy_raw_kernel_xml ap_link_39: kernel.xml not generated: /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/kernel.internal.xml
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.89 seconds. CPU system time: 0.21 seconds. Elapsed time: 2.16 seconds; current allocated memory: 215.040 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 215.042 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.64 seconds. CPU system time: 0.16 seconds. Elapsed time: 1.82 seconds; current allocated memory: 214.936 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 214.938 MB.
 Execute         opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
 Execute           cleanup_all_models 
 INFO: [HLS 200-10] Starting code transformations ...
 INFO-FLOW: Running Standard Transforms...
 Execute           transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -mem2reg -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top kernel_gemm -deadargelim -mem2reg -instcombine -dce -presyn-prepare -auto-rom-infer -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -func-inst -deadargelim -auto-shift-reg-idiom -promote-dbg-pointer -norm-name /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.0.bc -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.1.bc -f -phase std-opt 
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 216.576 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 216.412 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
 INFO-FLOW: Checking Synthesizability 1/2..
 Execute           transform -hls -syn-check -check-rec-only -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -function-uniquify -directive-preproc -mem2reg -dse -dce -auto-rom-infer -dce -pag -array-normalize -instcombine -dce -array-seg-normalize -instcombine -dce -data-pack -instcombine -dce -inst-simplify -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -resolve-double-ptr -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -function-uniquify -directive-preproc -mem2reg -dse -dce -globaldce -check-dspbuiltin /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.1.bc -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.2.prechk.bc -f 
 INFO-FLOW: Checking Synthesizability 2/2..
 Execute           transform -syn-check /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.2.prechk.bc -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.2.bc -f -phase syn-check 
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 215.794 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 215.713 MB.
 INFO-FLOW: Compiler optimizing ...
 INFO-FLOW: Share syncheck's 1.bc for syn flow: copy /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.g.1.bc to /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.o.1.bc
 INFO-FLOW: Presyn 1...
 Execute           transform -hls -tmp /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db -interface-port-rename -function-uniquify -directive-preproc -mem2reg -dse -dce -disaggr -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -simplifycfg -auto-rom-infer -dce -function-uniquify -resource-proc -clib-intrinsic-prepare -dce -func-buffer -dce -pag -array-normalize -func-legal -instcombine -gvn -constprop -dce -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -ptrArgReplace -mem2reg -dce -array-seg-normalize -deadargelim -instcombine -dce -function-uniquify -directive-preproc -mem2reg -dse -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -find-region -instcombine -auto-loop-pipeline -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -duplicate-dataflow-processes -globaldce -instcombine -array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -dce -global-constprop -deadargelim -mem2reg -simplifycfg -dce -merge-param -deadargelim -globalopt -constprop -dce -array-promote -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -mem-intrinsic-preproc -dce -global-internalize -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -dce -norm-name -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -accesses-merge -function-inline -complex-op-raise -inst-simplify -globaldce -func-inst -constprop -instcombine -simplifycfg -dce -func-legal -dce -loop-bound -arraycheck -bitwidthmin2 -bitwidthmin2 -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -duplicate-dataflow-processes -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -check-dataflow-syntax -legalize-stream-variable -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -hls-dead-arg-elim -deadargelim -directive-preproc -annotate-dataflow-channels -scalar-propagation -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -function-uniquify -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -norm-name /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.o.1.bc -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.o.1.tmp.bc -f 
-INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'VITIS_LOOP_91_11' (mm_kernel.cpp:94) in function 'kernel_gemm' for pipelining.
-INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_99_12' (mm_kernel.cpp:94) in function 'kernel_gemm' completely with a factor of 32.
-INFO: [XFORM 203-101] Partitioning array 'buff_A' (mm_kernel.cpp:27) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'buff_B' (mm_kernel.cpp:28) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'buff_C' (mm_kernel.cpp:29) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'buff_C' (mm_kernel.cpp:29) in dimension 2 completely.
-Command           transform done; 2.94 sec.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'VITIS_LOOP_31_2' (mm_kernel.cpp:34) in function 'compute_tile' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_36_3' (mm_kernel.cpp:34) in function 'compute_tile' completely with a factor of 32.
+INFO: [XFORM 203-101] Partitioning array 'buff_A' (mm_kernel.cpp:67) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'buff_B' (mm_kernel.cpp:68) in dimension 1 completely.
+Command           transform done; 0.18 sec.
 INFO-FLOW: Presyn 2...
 Execute           transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin2 -bitwidthmin2 -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -auto-burst -barrier -norm-name /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.o.1.tmp.bc -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.o.2.bc -f -phase presyn 
-Command           transform done; 11.13 sec.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 13.99 seconds. CPU system time: 0.05 seconds. Elapsed time: 14.07 seconds; current allocated memory: 346.608 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.27 seconds. CPU system time: 0 seconds. Elapsed time: 0.28 seconds; current allocated memory: 237.156 MB.
 Execute           get_config_compile -enable_loop_extract 
 Execute           get_config_compile -disable_auto_rewind 
 Execute           get_config_compile -enable_auto_rewind 
 INFO-FLOW: Building ssdm...
 Execute           transform -hls -function-uniquify -auto-function-inline -globaldce -ptrArgReplace -mem2reg -dce -reset-lda -loop-simplify -indvars -aggr-aa -licm -loop-dep -loop-bound -licm -loop-simplify -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg -loop-simplify -array-burst -promote-global-argument -dce -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -disaggr -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -auto-rom-infer -array-flatten -dce -instcombine -check-doubleptr -loop-rot -constprop -cfgopt -simplifycfg -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -bitwidthmin2 -bitwidthmin2 -deadargelim -dce -canonicalize-dataflow -dce -scalar-propagation -deadargelim -globaldce -mem2reg -read-loop-dep -interface-preproc -directive-preproc -interface-gen -bram-byte-enable -deadargelim -inst-simplify -dce -gvn -mem2reg -instcombine -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -complex-op-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg -loop-simplify -mergereturn -inst-simplify -inst-rectify -dce -load-elim -bitop-lower -float-op-raise -loop-rewind -pointer-simplify -dce -cfgopt -dce -loop-bound -loop-dep -read-loop-dep -dce -dyn-mem-reuse -dce -check-stream -norm-name -legalize -validate-dataflow -inst-clarity -bitwidth -dump-loop-dep-to-ir -check-all-ssdm -cdfg-build /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.o.2.bc -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_80_3' (mm_kernel.cpp:80:39) in function 'kernel_gemm'.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_9_1' (mm_kernel.cpp:9:30) in function 'kernel_gemm'.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_9_1' (mm_kernel.cpp:9:30) in function 'kernel_gemm'.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_91_5' (mm_kernel.cpp:91:39) in function 'kernel_gemm' more than one sub loop.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_46_1' (mm_kernel.cpp:46:31) in function 'kernel_gemm'.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_76_2' (mm_kernel.cpp:76:35) in function 'kernel_gemm' more than one sub loop.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_75_1' (mm_kernel.cpp:75:28) in function 'kernel_gemm'.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_30_1' (mm_kernel.cpp:30:28) in function 'compute_tile'.
+INFO: [HLS 200-472] Inferring partial write operation for 'buff_C' (mm_kernel.cpp:85:58)
+INFO: [HLS 200-472] Inferring partial write operation for 'buff_A[0]' (mm_kernel.cpp:15:34)
+INFO: [HLS 200-472] Inferring partial write operation for 'buff_C' (mm_kernel.cpp:39:26)
+Command           transform done; 0.23 sec.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.23 seconds. CPU system time: 0 seconds. Elapsed time: 0.23 seconds; current allocated memory: 243.871 MB.
+INFO-FLOW: Finish building internal data model.
+Command         opt_and_import_c done; 0.58 sec.
+Command       elaborate done; 2.64 sec.
+Execute       autosyn -from_csynth_design=1 
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO-FLOW: Synthesizing C/C++ design ...
+INFO: [HLS 200-10] Synthesizing 'kernel_gemm' ...
+Execute         ap_set_top_model kernel_gemm 
+Execute         get_model_list kernel_gemm -filter all-wo-channel -topdown 
+Execute         preproc_iomode -model kernel_gemm 
+Execute         preproc_iomode -model compute_tile 
+Execute         get_model_list kernel_gemm -filter all-wo-channel 
+INFO-FLOW: Model list for configure: compute_tile kernel_gemm
+INFO-FLOW: Configuring Module : compute_tile ...
+Execute         set_default_model compute_tile 
+Execute         apply_spec_resource_limit compute_tile 
+INFO-FLOW: Configuring Module : kernel_gemm ...
+Execute         set_default_model kernel_gemm 
+Execute         apply_spec_resource_limit kernel_gemm 
+INFO-FLOW: Model list for preprocess: compute_tile kernel_gemm
+INFO-FLOW: Preprocessing Module: compute_tile ...
+Execute         set_default_model compute_tile 
+Execute         cdfg_preprocess -model compute_tile 
+Execute         rtl_gen_preprocess compute_tile 
+INFO-FLOW: Preprocessing Module: kernel_gemm ...
+Execute         set_default_model kernel_gemm 
+Execute         cdfg_preprocess -model kernel_gemm 
+Execute         rtl_gen_preprocess kernel_gemm 
+INFO-FLOW: Model list for synthesis: compute_tile kernel_gemm
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'compute_tile' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model compute_tile 
+Execute         schedule -model compute_tile 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_30_1_VITIS_LOOP_31_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 242, loop 'VITIS_LOOP_30_1_VITIS_LOOP_31_2'
+INFO: [SCHED 204-11] Finished scheduling.
+Command         schedule done; 0.45 sec.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.46 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.46 seconds; current allocated memory: 245.702 MB.
+Execute         syn_report -verbosereport -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/compute_tile.verbose.sched.rpt 
+Execute           AP::get_flow_target_display_name
+Execute             get_solution -flow_target 
+Command         syn_report done; 0.5 sec.
+Execute         db_write -o /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/.autopilot/db/compute_tile.sched.adb -f 
+INFO-FLOW: Finish scheduling compute_tile.
+Execute         set_default_model compute_tile 
+Execute         bind -model compute_tile 

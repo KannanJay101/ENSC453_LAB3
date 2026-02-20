@@ -3,8 +3,8 @@ INFO: [SIM 4] CSIM will launch GCC as the compiler.
    Compiling ../../../../mm_tb.cpp in debug mode
    Compiling ../../../../mm_kernel.cpp in debug mode
    Generating csim.exe
-kernel execution: 131.496845604
-sum of C array = 27789742080.000000
+kernel execution: 0.000063234
+sum of C array = 10852.000000
 Size of Tile: 32
 INFO: [SIM 1] CSim done with 0 errors.
 INFO: [SIM 3] *************** CSIM finish ***************

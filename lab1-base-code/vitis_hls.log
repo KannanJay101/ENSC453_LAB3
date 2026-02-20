@@ -7,22 +7,21 @@
 source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'kja56' on host 'fas-rla-31.fas.sfu.ca' (Linux_x86_64 version 4.18.0-553.97.1.el8_10.x86_64) on Sun Feb 15 18:14:32 PST 2026
+INFO: [HLS 200-10] For user 'kja56' on host 'fas-rla-08.fas.sfu.ca' (Linux_x86_64 version 4.18.0-553.97.1.el8_10.x86_64) on Wed Feb 18 17:02:30 PST 2026
 INFO: [HLS 200-10] On os "AlmaLinux release 8.10 (Cerulean Leopard)"
 INFO: [HLS 200-10] In directory '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code'
-Sourcing Tcl script 'run_hls.tcl'
-INFO: [HLS 200-1510] Running: open_project -reset proj_lab3 
-INFO: [HLS 200-10] Opening and resetting project '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3'.
-WARNING: [HLS 200-40] No /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/solution1.aps file found.
+Sourcing Tcl script 'run_csim.tcl'
+INFO: [HLS 200-1510] Running: open_project -reset proj_csim 
+INFO: [HLS 200-10] Creating and opening project '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_csim'.
 INFO: [HLS 200-1510] Running: set_top kernel_gemm 
-INFO: [HLS 200-1510] Running: add_files mm_kernel.cpp 
+INFO: [HLS 200-1510] Running: add_files mm_kernel.cpp -cflags -DNI=4096 -DNJ=4096 -DNK=4096 -DBS=64 
 INFO: [HLS 200-10] Adding design file 'mm_kernel.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb mm_tb.cpp 
+INFO: [HLS 200-1510] Running: add_files -tb mm_tb.cpp -cflags -DNI=4096 -DNJ=4096 -DNK=4096 -DBS=64 
 INFO: [HLS 200-10] Adding test bench file 'mm_tb.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution -reset solution1 
-INFO: [HLS 200-10] Creating and opening solution '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1'.
+INFO: [HLS 200-10] Creating and opening solution '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_csim/solution1'.
 INFO: [HLS 200-10] Cleaning up the solution database.
-WARNING: [HLS 200-40] No /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_lab3/solution1/solution1.aps file found.
+WARNING: [HLS 200-40] No /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/proj_csim/solution1/solution1.aps file found.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xcu50-fsvh2104-2-e 
@@ -35,50 +34,126 @@ INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
    Compiling ../../../../mm_tb.cpp in debug mode
    Compiling ../../../../mm_kernel.cpp in debug mode
    Generating csim.exe
-kernel execution: 131.496845604
-sum of C array = 27789742080.000000
-Size of Tile: 32
+kernel execution: 110.177756868
+sum of C array = 27789551616.000000
+Size of Tile: 64
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 131.97 seconds. CPU system time: 0.22 seconds. Elapsed time: 131.89 seconds; current allocated memory: 211.798 MB.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 110.71 seconds. CPU system time: 0.28 seconds. Elapsed time: 110.62 seconds; current allocated memory: 195.762 MB.
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 211.982 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 195.998 MB.
 INFO: [HLS 200-10] Analyzing design file 'mm_kernel.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.13 seconds. CPU system time: 0.08 seconds. Elapsed time: 0.32 seconds; current allocated memory: 213.765 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.12 seconds. CPU system time: 0.09 seconds. Elapsed time: 0.21 seconds; current allocated memory: 197.766 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:9:0)
-WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:9:0)
-WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:9:0)
-INFO: [HLS 214-115] Multiple burst reads of length 32 and bit width 32 in loop 'VITIS_LOOP_46_4'(mm_kernel.cpp:46:34) has been inferred on port 'gmem0' (mm_kernel.cpp:46:34)
-INFO: [HLS 214-115] Multiple burst reads of length 32 and bit width 32 in loop 'VITIS_LOOP_64_7'(mm_kernel.cpp:64:38) has been inferred on port 'gmem0' (mm_kernel.cpp:64:38)
-INFO: [HLS 214-115] Multiple burst reads of length 32 and bit width 32 in loop 'VITIS_LOOP_77_9'(mm_kernel.cpp:77:38) has been inferred on port 'gmem1' (mm_kernel.cpp:77:38)
-INFO: [HLS 214-115] Multiple burst writes of length 32 and bit width 32 in loop 'VITIS_LOOP_112_14'(mm_kernel.cpp:112:36) has been inferred on port 'gmem0' (mm_kernel.cpp:112:36)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.89 seconds. CPU system time: 0.21 seconds. Elapsed time: 2.16 seconds; current allocated memory: 215.040 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 215.042 MB.
+INFO: [HLS 214-178] Inlining function 'load_input_tile(float*, float (*) [64], int, int, int, int)' into 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+INFO: [HLS 214-178] Inlining function 'store_output_tile(float*, float (*) [64], int, int, int, int)' into 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:59:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 2.11 seconds. CPU system time: 0.2 seconds. Elapsed time: 2.32 seconds; current allocated memory: 198.921 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 198.923 MB.
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 216.576 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 200.398 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 215.794 MB.
-INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'VITIS_LOOP_91_11' (mm_kernel.cpp:94) in function 'kernel_gemm' for pipelining.
-INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_99_12' (mm_kernel.cpp:94) in function 'kernel_gemm' completely with a factor of 32.
-INFO: [XFORM 203-101] Partitioning array 'buff_A' (mm_kernel.cpp:27) in dimension 2 completely.
-INFO: [XFORM 203-101] Partitioning array 'buff_B' (mm_kernel.cpp:28) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'buff_C' (mm_kernel.cpp:29) in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'buff_C' (mm_kernel.cpp:29) in dimension 2 completely.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 13.99 seconds. CPU system time: 0.05 seconds. Elapsed time: 14.07 seconds; current allocated memory: 346.608 MB.
-WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_45_3' (mm_kernel.cpp:45:39) in function 'kernel_gemm' the outer loop is not a perfect loop.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 199.697 MB.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'VITIS_LOOP_31_2' (mm_kernel.cpp:34) in function 'compute_tile' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_36_3' (mm_kernel.cpp:34) in function 'compute_tile' completely with a factor of 64.
+WARNING: [HLS 200-914] Completely partitioning array 'buff_A' (mm_kernel.cpp:67) accessed through non-constant indices on dimension 2 (mm_kernel.cpp:15:17), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+Resolution: For help on HLS 200-914 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-914.html
+INFO: [XFORM 203-101] Partitioning array 'buff_A' (mm_kernel.cpp:67) in dimension 2 completely.
+WARNING: [HLS 200-914] Completely partitioning array 'buff_B' (mm_kernel.cpp:68) accessed through non-constant indices on dimension 1 (mm_kernel.cpp:15:17), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+Resolution: For help on HLS 200-914 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-914.html
+INFO: [XFORM 203-101] Partitioning array 'buff_B' (mm_kernel.cpp:68) in dimension 1 completely.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.34 seconds. CPU system time: 0 seconds. Elapsed time: 0.34 seconds; current allocated memory: 221.969 MB.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_80_3' (mm_kernel.cpp:80:39) in function 'kernel_gemm'.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_9_1' (mm_kernel.cpp:9:30) in function 'kernel_gemm'.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_9_1' (mm_kernel.cpp:9:30) in function 'kernel_gemm'.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_91_5' (mm_kernel.cpp:91:39) in function 'kernel_gemm' more than one sub loop.
 Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
-WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_63_6' (mm_kernel.cpp:63:43) in function 'kernel_gemm' the outer loop is not a perfect loop.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_46_1' (mm_kernel.cpp:46:31) in function 'kernel_gemm'.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_76_2' (mm_kernel.cpp:76:35) in function 'kernel_gemm' more than one sub loop.
 Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
-WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_76_8' (mm_kernel.cpp:76:43) in function 'kernel_gemm' the outer loop is not a perfect loop.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
-INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_90_10' (mm_kernel.cpp:90:44) in function 'kernel_gemm'.
-WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_59_5' (mm_kernel.cpp:59:39) in function 'kernel_gemm' more than one sub loop.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
-WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_111_13' (mm_kernel.cpp:111:41) in function 'kernel_gemm' the outer loop is not a perfect loop.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
-WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_40_2' (mm_kernel.cpp:40:35) in function 'kernel_gemm' more than one sub loop.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
-INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_39_1' (mm_kernel.cpp:39:28) in function 'kernel_gemm'.
-INFO: [HLS 200-472] Inferring partial write operation for 'buff_A[0]' (mm_kernel.cpp:69:44)
-INFO: [HLS 200-472] Inferring partial write operation for 'buff_B[0]' (mm_kernel.cpp:82:44)
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_75_1' (mm_kernel.cpp:75:28) in function 'kernel_gemm'.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_30_1' (mm_kernel.cpp:30:28) in function 'compute_tile'.
+INFO: [HLS 200-472] Inferring partial write operation for 'buff_C' (mm_kernel.cpp:85:58)
+INFO: [HLS 200-472] Inferring partial write operation for 'buff_A[0]' (mm_kernel.cpp:15:34)
+INFO: [HLS 200-472] Inferring partial write operation for 'buff_C' (mm_kernel.cpp:39:26)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.37 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.38 seconds; current allocated memory: 233.980 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel_gemm' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'compute_tile' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_30_1_VITIS_LOOP_31_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 466, loop 'VITIS_LOOP_30_1_VITIS_LOOP_31_2'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.89 seconds. CPU system time: 0 seconds. Elapsed time: 0.89 seconds; current allocated memory: 237.201 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.46 seconds. CPU system time: 0 seconds. Elapsed time: 1.47 seconds; current allocated memory: 242.758 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_gemm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_80_3_VITIS_LOOP_81_4'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 20, loop 'VITIS_LOOP_80_3_VITIS_LOOP_81_4'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_9_1_VITIS_LOOP_10_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 16, loop 'VITIS_LOOP_9_1_VITIS_LOOP_10_2'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_9_1_VITIS_LOOP_10_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 16, loop 'VITIS_LOOP_9_1_VITIS_LOOP_10_2'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_46_1_VITIS_LOOP_47_2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 14, loop 'VITIS_LOOP_46_1_VITIS_LOOP_47_2'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.38 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.4 seconds; current allocated memory: 245.345 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.94 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.95 seconds; current allocated memory: 257.645 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'compute_tile' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-104] Estimated max fanout for 'compute_tile' is 62199 from HDL expression: (1'b0 == ap_block_pp0_stage0_11001)
+INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_7_full_dsp_1': 65 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 65 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'compute_tile'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.33 seconds; current allocated memory: 275.197 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_gemm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/gmem0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/gmem1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/C' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/A' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/B' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/alpha' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/beta' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/ni' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/nj' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_gemm/nk' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel_gemm' to 's_axilite & ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Bundling port 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Bundling port 'C', 'A' and 'B' to AXI-Lite port control_r.
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_27ns_27ns_116_2_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_62s_32s_62_5_1': 4 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_gemm'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.95 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.98 seconds; current allocated memory: 294.607 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'kernel_gemm_mul_27ns_27ns_116_2_1_Multiplier_0'
+INFO: [RTMG 210-282] Generating pipelined core: 'kernel_gemm_mul_62s_32s_62_5_1_Multiplier_1'
+INFO: [RTMG 210-278] Implementing memory 'kernel_gemm_buff_A_0_ram (RAM)' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'kernel_gemm_buff_C_ram (RAM)' using auto RAMs.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 4.54 seconds. CPU system time: 0.08 seconds. Elapsed time: 4.64 seconds; current allocated memory: 319.058 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel_gemm.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel_gemm.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 411.37 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 15.59 seconds. CPU system time: 0.43 seconds. Elapsed time: 16.12 seconds; current allocated memory: 320.986 MB.
+INFO: [HLS 200-112] Total CPU user time: 127.73 seconds. Total CPU system time: 1.13 seconds. Total elapsed time: 127.9 seconds; peak allocated memory: 319.058 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Wed Feb 18 17:04:38 2026...

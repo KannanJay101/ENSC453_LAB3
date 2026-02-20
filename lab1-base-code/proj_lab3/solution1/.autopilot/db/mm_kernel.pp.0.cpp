@@ -151,10 +151,13 @@ extern "C" {
 }
 # 2 "<built-in>" 2
 # 1 "mm_kernel.cpp" 2
+
+
+
 # 1 "./mm_kernel.h" 1
-# 13 "./mm_kernel.h"
+# 21 "./mm_kernel.h"
 __attribute__((sdx_kernel("kernel_gemm", 0))) void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, int nj, int nk);
-# 2 "mm_kernel.cpp" 2
+# 5 "mm_kernel.cpp" 2
 # 1 "/usr/include/string.h" 1 3 4
 # 26 "/usr/include/string.h" 3 4
 # 1 "/usr/include/bits/libc-header-start.h" 1 3 4
@@ -578,31 +581,68 @@ extern "C++" const char *basename (const char *__filename)
      throw () __asm ("basename") __attribute__ ((__nonnull__ (1)));
 # 499 "/usr/include/string.h" 3 4
 }
-# 3 "mm_kernel.cpp" 2
+# 6 "mm_kernel.cpp" 2
+
+
+static void load_input_tile(float* global_ptr, float local_buff[32][32], int row_offset, int col_offset, int max_row, int max_col) {
+    VITIS_LOOP_9_1: for (int i = 0; i < 32; i++) {
+        VITIS_LOOP_10_2: for (int j = 0; j < 32; j++) {
+#pragma HLS PIPELINE II=1
+ int r = row_offset + i;
+            int c = col_offset + j;
+            if (r < max_row && c < max_col)
+                local_buff[i][j] = global_ptr[r * max_col + c];
+            else
+                local_buff[i][j] = 0.0f;
+        }
+    }
+}
+
+
+static void compute_tile(float buff_A[32][32], float buff_B[32][32], float buff_C[32][32], float alpha) {
+
+#pragma HLS ARRAY_PARTITION variable=buff_A dim=2 complete
+#pragma HLS ARRAY_PARTITION variable=buff_B dim=1 complete
 
 
 
+ VITIS_LOOP_30_1: for (int i = 0; i < 32; i++) {
+        VITIS_LOOP_31_2: for (int j = 0; j < 32; j++) {
+#pragma HLS PIPELINE II=1
+
+ float sum = 0.0f;
+
+            VITIS_LOOP_36_3: for (int k = 0; k < 32; k++) {
+                sum += buff_A[i][k] * buff_B[k][j];
+            }
+            buff_C[i][j] += alpha * sum;
+        }
+    }
+}
+
+
+static void store_output_tile(float* global_ptr, float local_buff[32][32], int row_offset, int col_offset, int max_row, int max_col) {
+    VITIS_LOOP_46_1: for (int i = 0; i < 32; i++) {
+        VITIS_LOOP_47_2: for (int j = 0; j < 32; j++) {
+#pragma HLS PIPELINE II=1
+ int r = row_offset + i;
+            int c = col_offset + j;
+            if (r < max_row && c < max_col)
+                global_ptr[r * max_col + c] = local_buff[i][j];
+        }
+    }
+}
 
 
 __attribute__((sdx_kernel("kernel_gemm", 0))) void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, int nj, int nk)
 {
 #pragma HLS TOP name=kernel_gemm
-# 9 "mm_kernel.cpp"
-
+# 59 "mm_kernel.cpp"
 
 
 #pragma HLS INTERFACE m_axi port=A offset=slave bundle=gmem0
 #pragma HLS INTERFACE m_axi port=B offset=slave bundle=gmem1
 #pragma HLS INTERFACE m_axi port=C offset=slave bundle=gmem0
-
-#pragma HLS INTERFACE s_axilite port=A bundle=control
-#pragma HLS INTERFACE s_axilite port=B bundle=control
-#pragma HLS INTERFACE s_axilite port=C bundle=control
-#pragma HLS INTERFACE s_axilite port=alpha bundle=control
-#pragma HLS INTERFACE s_axilite port=beta bundle=control
-#pragma HLS INTERFACE s_axilite port=ni bundle=control
-#pragma HLS INTERFACE s_axilite port=nj bundle=control
-#pragma HLS INTERFACE s_axilite port=nk bundle=control
 #pragma HLS INTERFACE s_axilite port=return bundle=control
 
 
@@ -611,94 +651,35 @@ __attribute__((sdx_kernel("kernel_gemm", 0))) void kernel_gemm(float* C, float* 
     float buff_C[32][32];
 
 
-
 #pragma HLS ARRAY_PARTITION variable=buff_A dim=2 complete
 #pragma HLS ARRAY_PARTITION variable=buff_B dim=1 complete
-#pragma HLS ARRAY_PARTITION variable=buff_C dim=0 complete
+
+ VITIS_LOOP_75_1: for (int i = 0; i < ni; i += 32) {
+        VITIS_LOOP_76_2: for (int j = 0; j < nj; j += 32) {
 
 
 
- VITIS_LOOP_39_1: for (int i = 0; i < 4096; i += 32) {
-        VITIS_LOOP_40_2: for (int j = 0; j < 4096; j += 32) {
-
-
-
-
-            VITIS_LOOP_45_3: for (int ii = 0; ii < 32; ii++) {
-                VITIS_LOOP_46_4: for (int jj = 0; jj < 32; jj++) {
-#pragma HLS PIPELINE II=1
- int global_idx = (i + ii) * 4096 + (j + jj);
-                    if ((i + ii) < 4096 && (j + jj) < 4096) {
-
-                        buff_C[ii][jj] = C[global_idx] * beta;
-                    } else {
-                        buff_C[ii][jj] = 0.0f;
-                    }
-                }
-            }
-
-
-            VITIS_LOOP_59_5: for (int k = 0; k < 4096; k += 32) {
-
-
-
-                VITIS_LOOP_63_6: for (int ii = 0; ii < 32; ii++) {
-                    VITIS_LOOP_64_7: for (int kk = 0; kk < 32; kk++) {
+            VITIS_LOOP_80_3: for (int ii = 0; ii < 32; ii++) {
+                VITIS_LOOP_81_4: for (int jj = 0; jj < 32; jj++) {
 #pragma HLS PIPELINE II=1
  int r = i + ii;
-                        int c = k + kk;
-                        if (r < 4096 && c < 4096)
-                            buff_A[ii][kk] = A[r * 4096 + c];
-                        else
-                            buff_A[ii][kk] = 0.0f;
-                    }
-                }
-
-
-                VITIS_LOOP_76_8: for (int kk = 0; kk < 32; kk++) {
-                    VITIS_LOOP_77_9: for (int jj = 0; jj < 32; jj++) {
-#pragma HLS PIPELINE II=1
- int r = k + kk;
-                        int c = j + jj;
-                        if (r < 4096 && c < 4096)
-                            buff_B[kk][jj] = B[r * 4096 + c];
-                        else
-                            buff_B[kk][jj] = 0.0f;
-                    }
-                }
-
-
-
-                VITIS_LOOP_90_10: for (int ii = 0; ii < 32; ii++) {
-                    VITIS_LOOP_91_11: for (int jj = 0; jj < 32; jj++) {
-#pragma HLS PIPELINE II=1
-
- float sum = 0;
-
-
-
-
-                        VITIS_LOOP_99_12: for (int kk = 0; kk < 32; kk++) {
-                            sum += buff_A[ii][kk] * buff_B[kk][jj];
-                        }
-
-
-                        buff_C[ii][jj] += alpha * sum;
-                    }
+                    int c = j + jj;
+                    if (r < ni && c < nj) buff_C[ii][jj] = C[r * nj + c] * beta;
+                    else buff_C[ii][jj] = 0.0f;
                 }
             }
 
 
+            VITIS_LOOP_91_5: for (int k = 0; k < nk; k += 32) {
 
-            VITIS_LOOP_111_13: for (int ii = 0; ii < 32; ii++) {
-                VITIS_LOOP_112_14: for (int jj = 0; jj < 32; jj++) {
-#pragma HLS PIPELINE II=1
- int global_idx = (i + ii) * 4096 + (j + jj);
-                    if ((i + ii) < 4096 && (j + jj) < 4096) {
-                        C[global_idx] = buff_C[ii][jj];
-                    }
-                }
+                load_input_tile(A, buff_A, i, k, ni, nk);
+                load_input_tile(B, buff_B, k, j, nk, nj);
+
+                compute_tile(buff_A, buff_B, buff_C, alpha);
             }
+
+
+            store_output_tile(C, buff_C, i, j, ni, nj);
         }
     }
 }
