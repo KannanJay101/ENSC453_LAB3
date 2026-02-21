@@ -7,13 +7,12 @@
 source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'kja56' on host 'fas-rla-06.fas.sfu.ca' (Linux_x86_64 version 4.18.0-553.97.1.el8_10.x86_64) on Fri Feb 20 18:03:39 PST 2026
+INFO: [HLS 200-10] For user 'kja56' on host 'fas-rla-06.fas.sfu.ca' (Linux_x86_64 version 4.18.0-553.97.1.el8_10.x86_64) on Fri Feb 20 18:06:29 PST 2026
 INFO: [HLS 200-10] On os "AlmaLinux release 8.10 (Cerulean Leopard)"
 INFO: [HLS 200-10] In directory '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code'
 Sourcing Tcl script 'co-sim/run_hls.tcl'
 INFO: [HLS 200-1510] Running: open_project -reset proj_cosim 
-INFO: [HLS 200-10] Opening and resetting project '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/co-sim/proj_cosim'.
-WARNING: [HLS 200-40] No /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/co-sim/proj_cosim/solution1/solution1.aps file found.
+INFO: [HLS 200-10] Creating and opening project '/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/co-sim/proj_cosim'.
 INFO: [HLS 200-1510] Running: set_top kernel_gemm 
 INFO: [HLS 200-1510] Running: add_files mm_kernel.cpp -cflags -DNI=32 -DNJ=32 -DNK=32 -DBS=16 
 INFO: [HLS 200-10] Adding design file 'mm_kernel.cpp' to the project
@@ -35,16 +34,16 @@ INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
    Compiling ../../../../mm_tb.cpp in debug mode
    Compiling ../../../../mm_kernel.cpp in debug mode
    Generating csim.exe
-kernel execution: 0.000086573
+kernel execution: 0.000086968
 sum of C array = 10852.000000
 Size of Tile: 16
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.41 seconds. CPU system time: 0.23 seconds. Elapsed time: 0.32 seconds; current allocated memory: 195.811 MB.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.4 seconds. CPU system time: 0.22 seconds. Elapsed time: 0.32 seconds; current allocated memory: 195.759 MB.
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 195.995 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 195.979 MB.
 INFO: [HLS 200-10] Analyzing design file 'mm_kernel.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.16 seconds. CPU system time: 0.15 seconds. Elapsed time: 0.2 seconds; current allocated memory: 196.634 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.19 seconds. CPU system time: 0.13 seconds. Elapsed time: 0.21 seconds; current allocated memory: 196.603 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
 INFO: [HLS 214-186] Unrolling loop 'COMPUTE_LOOP_K' (mm_kernel.cpp:32:29) in function 'compute_tile' completely with a factor of 16 (mm_kernel.cpp:32:29)
 INFO: [HLS 214-178] Inlining function 'load_input_tile(float*, float (*) [16], int, int, int, int)' into 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:56:0)
@@ -52,15 +51,15 @@ INFO: [HLS 214-178] Inlining function 'store_output_tile(float*, float (*) [16],
 WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:56:0)
 WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:56:0)
 WARNING: [HLS 214-205] The INTERFACE pragma must have a max_widen_bitwidth setting that is both a power of 2 and in the range [0, 1024]. The current value of '0' will be ignored, in 'kernel_gemm(float*, float*, float*, float, float, int, int, int)' (mm_kernel.cpp:56:0)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.85 seconds. CPU system time: 0.21 seconds. Elapsed time: 2.07 seconds; current allocated memory: 199.081 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 199.083 MB.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.87 seconds. CPU system time: 0.19 seconds. Elapsed time: 2.06 seconds; current allocated memory: 199.066 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 199.067 MB.
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 200.705 MB.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 200.688 MB.
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 200.021 MB.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 200.004 MB.
 INFO: [XFORM 203-101] Partitioning array 'buff_A' (mm_kernel.cpp:67) in dimension 2 completely.
 INFO: [XFORM 203-101] Partitioning array 'buff_B' (mm_kernel.cpp:68) in dimension 1 completely.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.27 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.28 seconds; current allocated memory: 221.137 MB.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.28 seconds. CPU system time: 0 seconds. Elapsed time: 0.29 seconds; current allocated memory: 221.122 MB.
 INFO: [XFORM 203-541] Flattening a loop nest 'INIT_LOOP_II' (mm_kernel.cpp:76:25) in function 'kernel_gemm'.
 INFO: [XFORM 203-541] Flattening a loop nest 'LOAD_LOOP_I' (mm_kernel.cpp:12:27) in function 'kernel_gemm'.
 INFO: [XFORM 203-541] Flattening a loop nest 'LOAD_LOOP_I' (mm_kernel.cpp:12:27) in function 'kernel_gemm'.
@@ -74,7 +73,7 @@ INFO: [XFORM 203-541] Flattening a loop nest 'COMPUTE_LOOP_I' (mm_kernel.cpp:28:
 INFO: [HLS 200-472] Inferring partial write operation for 'buff_C' (mm_kernel.cpp:81:36)
 INFO: [HLS 200-472] Inferring partial write operation for 'buff_A[0]' (mm_kernel.cpp:17:30)
 INFO: [HLS 200-472] Inferring partial write operation for 'buff_C' (mm_kernel.cpp:36:26)
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.19 seconds. CPU system time: 0 seconds. Elapsed time: 0.18 seconds; current allocated memory: 226.086 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.2 seconds. CPU system time: 0 seconds. Elapsed time: 0.2 seconds; current allocated memory: 226.070 MB.
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'kernel_gemm' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -84,13 +83,13 @@ INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-61] Pipelining loop 'COMPUTE_LOOP_I_COMPUTE_LOOP_J'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 130, loop 'COMPUTE_LOOP_I_COMPUTE_LOOP_J'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.25 seconds. CPU system time: 0 seconds. Elapsed time: 0.26 seconds; current allocated memory: 227.208 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.25 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.25 seconds; current allocated memory: 227.196 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.44 seconds. CPU system time: 0 seconds. Elapsed time: 0.45 seconds; current allocated memory: 228.540 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.42 seconds. CPU system time: 0 seconds. Elapsed time: 0.42 seconds; current allocated memory: 228.528 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'kernel_gemm' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -104,13 +103,13 @@ INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 16
 INFO: [SCHED 204-61] Pipelining loop 'STORE_LOOP_I_STORE_LOOP_J'.
 INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 14, loop 'STORE_LOOP_I_STORE_LOOP_J'
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.49 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.5 seconds; current allocated memory: 229.947 MB.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.51 seconds. CPU system time: 0 seconds. Elapsed time: 0.52 seconds; current allocated memory: 229.936 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.45 seconds. CPU system time: 0 seconds. Elapsed time: 0.45 seconds; current allocated memory: 232.167 MB.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.43 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.43 seconds; current allocated memory: 232.155 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'compute_tile' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -118,7 +117,7 @@ INFO: [RTGEN 206-104] Estimated max fanout for 'compute_tile' is 14319 from HDL 
 INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_7_full_dsp_1': 17 instance(s).
 INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 17 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'compute_tile'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.44 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.45 seconds; current allocated memory: 235.924 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.45 seconds. CPU system time: 0 seconds. Elapsed time: 0.46 seconds; current allocated memory: 235.909 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'kernel_gemm' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -140,17 +139,17 @@ INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 1 
 INFO: [RTGEN 206-100] Generating core module 'mul_29ns_29ns_120_2_1': 1 instance(s).
 INFO: [RTGEN 206-100] Generating core module 'mul_62s_32s_62_5_1': 4 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_gemm'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.62 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.64 seconds; current allocated memory: 244.054 MB.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.62 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.63 seconds; current allocated memory: 244.070 MB.
 INFO: [RTMG 210-282] Generating pipelined core: 'kernel_gemm_mul_29ns_29ns_120_2_1_Multiplier_0'
 INFO: [RTMG 210-282] Generating pipelined core: 'kernel_gemm_mul_62s_32s_62_5_1_Multiplier_1'
 INFO: [RTMG 210-278] Implementing memory 'kernel_gemm_buff_A_0_ram (RAM)' using auto RAMs.
 INFO: [RTMG 210-278] Implementing memory 'kernel_gemm_buff_C_ram (RAM)' using auto RAMs.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2.53 seconds. CPU system time: 0.06 seconds. Elapsed time: 2.59 seconds; current allocated memory: 261.323 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2.56 seconds. CPU system time: 0.05 seconds. Elapsed time: 2.64 seconds; current allocated memory: 261.309 MB.
 INFO: [VHDL 208-304] Generating VHDL RTL for kernel_gemm.
 INFO: [VLOG 209-307] Generating Verilog RTL for kernel_gemm.
 INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
 INFO: [HLS 200-789] **** Estimated Fmax: 411.37 MHz
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 7.92 seconds. CPU system time: 0.46 seconds. Elapsed time: 8.31 seconds; current allocated memory: 262.526 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 8 seconds. CPU system time: 0.4 seconds. Elapsed time: 8.35 seconds; current allocated memory: 262.528 MB.
 INFO: [HLS 200-1510] Running: cosim_design 
 INFO: [COSIM 212-47] Using XSIM for RTL simulation.
 INFO: [COSIM 212-14] Instrumenting C test bench ...
@@ -163,7 +162,7 @@ WARNING: [COSIM 212-369] AXI_master port 'A' has a depth of '0'. Insufficient de
    Compiling apatb_kernel_gemm_ir.ll
    Generating cosim.tv.exe
 INFO: [COSIM 212-302] Starting C TB testing ... 
-kernel execution: 0.004512794
+kernel execution: 0.004957297
 sum of C array = 10852.000000
 Size of Tile: 16
 INFO: [COSIM 212-333] Generating C post check test bench ...
@@ -185,7 +184,7 @@ INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kernel_gemm_ap_fm
 WARNING: [IP_Flow 19-4832] The IP name 'kernel_gemm_ap_fadd_5_full_dsp_32' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
 INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kernel_gemm_ap_fadd_5_full_dsp_32'...
 INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kernel_gemm_ap_fadd_5_full_dsp_32'...
-INFO: [Common 17-206] Exiting Vivado at Fri Feb 20 18:04:00 2026...
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 20 18:06:49 2026...
 INFO: [COSIM 212-1] *** C/RTL co-simulation file generation completed. ***
 INFO: [COSIM 212-323] Starting verilog simulation. 
 INFO: [COSIM 212-15] Starting XSIM ...
@@ -591,7 +590,7 @@ Built simulation snapshot kernel_gemm
     ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 
 source /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/co-sim/proj_cosim/solution1/sim/verilog/xsim.dir/kernel_gemm/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Fri Feb 20 18:04:20 2026...
+INFO: [Common 17-206] Exiting Webtalk at Fri Feb 20 18:07:10 2026...
 
 ****** xsim v2020.2.2 (64-bit)
   **** SW Build 3118627 on Tue Feb  9 05:13:49 MST 2021
@@ -614,15 +613,15 @@ source kernel_gemm.tcl
 // RTL Simulation : 1 / 1 [100.00%] @ "52550000"
 ////////////////////////////////////////////////////////////////////////////////////
 $finish called at time : 52563250 ps : File "/local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/co-sim/proj_cosim/solution1/sim/verilog/kernel_gemm.autotb.v" Line 671
-run: Time (s): cpu = 00:00:00.39 ; elapsed = 00:00:08 . Memory (MB): peak = 2639.836 ; gain = 0.000 ; free physical = 964 ; free virtual = 7349
+run: Time (s): cpu = 00:00:00.42 ; elapsed = 00:00:08 . Memory (MB): peak = 2639.836 ; gain = 0.000 ; free physical = 973 ; free virtual = 7359
 ## quit
-INFO: [Common 17-206] Exiting xsim at Fri Feb 20 18:04:33 2026...
+INFO: [Common 17-206] Exiting xsim at Fri Feb 20 18:07:23 2026...
 INFO: [COSIM 212-316] Starting C post checking ...
-kernel execution: 0.001269907
+kernel execution: 0.001249453
 sum of C array = 10852.000000
 Size of Tile: 16
 INFO: [COSIM 212-1000] *** C/RTL co-simulation finished: PASS ***
 INFO: [COSIM 212-211] II is measurable only when transaction number is greater than 1 in RTL simulation. Otherwise, they will be marked as all NA. If user wants to calculate them, please make sure there are at least 2 transactions in RTL simulation.
-INFO: [HLS 200-111] Finished Command cosim_design CPU user time: 48.05 seconds. CPU system time: 3.26 seconds. Elapsed time: 44.28 seconds; current allocated memory: 267.533 MB.
-INFO: [HLS 200-112] Total CPU user time: 57.92 seconds. Total CPU system time: 4.4 seconds. Total elapsed time: 54.24 seconds; peak allocated memory: 261.323 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Fri Feb 20 18:04:34 2026...
+INFO: [HLS 200-111] Finished Command cosim_design CPU user time: 48.32 seconds. CPU system time: 3.21 seconds. Elapsed time: 44.69 seconds; current allocated memory: 267.552 MB.
+INFO: [HLS 200-112] Total CPU user time: 58.24 seconds. Total CPU system time: 4.29 seconds. Total elapsed time: 54.62 seconds; peak allocated memory: 261.309 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Fri Feb 20 18:07:24 2026...

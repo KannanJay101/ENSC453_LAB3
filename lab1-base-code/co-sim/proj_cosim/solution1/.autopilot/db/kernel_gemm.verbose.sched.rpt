@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'kernel_gemm'
 ================================================================
-* Date:           Fri Feb 20 18:03:45 2026
+* Date:           Fri Feb 20 18:06:35 2026
 
 * Version:        2020.2.2 (Build 3118627 on Tue Feb  9 05:13:49 MST 2021)
 * Project:        proj_cosim
@@ -985,7 +985,7 @@ The critical path consists of the following:
 The critical path consists of the following:
 	multiplexor before 'phi' operation ('cond_i', mm_kernel.cpp:17) with incoming values : ('bitcast_ln17', mm_kernel.cpp:17) [246]  (0.387 ns)
 	'phi' operation ('cond_i', mm_kernel.cpp:17) with incoming values : ('bitcast_ln17', mm_kernel.cpp:17) [246]  (0 ns)
-	'store' operation ('store_ln17', mm_kernel.cpp:17) of variable 'cond_i', mm_kernel.cpp:17 on array 'buff_A[3]', mm_kernel.cpp:67 [295]  (0.699 ns)
+	'store' operation ('store_ln17', mm_kernel.cpp:17) of variable 'cond_i', mm_kernel.cpp:17 on array 'buff_A[10]', mm_kernel.cpp:67 [267]  (0.699 ns)
 
  <State 43>: 0.387ns
 The critical path consists of the following:

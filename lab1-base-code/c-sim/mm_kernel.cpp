@@ -1,11 +1,14 @@
 /*
  * ENSC 453 Lab 3 - GEMM Kernel for Alveo U50
  * C-sim config: 4096x4096 matrix, 64x64 buffer
- * Load-compute-store tiled structure; no Ping-Pong or memory coalescing.
+ * Implements C = alpha*A*B + beta*C using load-compute-store tiled structure.
  */
 
 #include "mm_kernel.h"
 
+// Load a BSxBS tile from off-chip DRAM into on-chip buffer.
+// global_ptr: base of source matrix; local_buff: on-chip destination.
+// row_offset, col_offset: tile position; max_row, max_col: matrix bounds (pad with 0 if out-of-bounds).
 static void load_input_tile(float* global_ptr, float local_buff[BS][BS],
                             int row_offset, int col_offset, int max_row, int max_col)
 {
@@ -19,6 +22,8 @@ static void load_input_tile(float* global_ptr, float local_buff[BS][BS],
     }
 }
 
+// Compute tile multiply: buff_C += alpha * (buff_A * buff_B). All data on-chip.
+// dim=2 on A and dim=1 on B enable parallel reads for pipelined MAC.
 static void compute_tile(float buff_A[BS][BS], float buff_B[BS][BS],
                          float buff_C[BS][BS], float alpha)
 {
@@ -38,6 +43,7 @@ static void compute_tile(float buff_A[BS][BS], float buff_B[BS][BS],
     }
 }
 
+// Store a BSxBS tile from on-chip buffer to off-chip DRAM.
 static void store_output_tile(float* global_ptr, float local_buff[BS][BS],
                               int row_offset, int col_offset, int max_row, int max_col)
 {
@@ -52,6 +58,7 @@ static void store_output_tile(float* global_ptr, float local_buff[BS][BS],
     }
 }
 
+// Top-level: C = alpha*A*B + beta*C. Iterates over tiles; each tile: init C, accumulate A*B, store.
 void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, int nj, int nk)
 {
     #pragma HLS INTERFACE m_axi port=A offset=slave bundle=gmem0 depth=4194304
@@ -68,11 +75,13 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
     float buff_B[BS][BS];
     float buff_C[BS][BS];
 
+    // Iterate over output tiles (i, j)
     TILE_LOOP_I: for (int i = 0; i < ni; i += BS) {
         #pragma HLS loop_tripcount min=64 max=64 avg=64
         TILE_LOOP_J: for (int j = 0; j < nj; j += BS) {
             #pragma HLS loop_tripcount min=64 max=64 avg=64
 
+            // Step 1: Initialize C tile with C*beta (or 0 for padding)
             INIT_LOOP_II: for (int ii = 0; ii < BS; ii++) {
                 INIT_LOOP_JJ: for (int jj = 0; jj < BS; jj++) {
                     #pragma HLS PIPELINE II=1
@@ -82,6 +91,7 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
                 }
             }
 
+            // Step 2: Accumulate alpha * A * B over k dimension (sum over inner dimension)
             TILE_LOOP_K: for (int k = 0; k < nk; k += BS) {
                 #pragma HLS loop_tripcount min=64 max=64 avg=64
                 load_input_tile(A, buff_A, i, k, ni, nk);
@@ -89,6 +99,7 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
                 compute_tile(buff_A, buff_B, buff_C, alpha);
             }
 
+            // Step 3: Write result back to DRAM
             store_output_tile(C, buff_C, i, j, ni, nj);
         }
     }

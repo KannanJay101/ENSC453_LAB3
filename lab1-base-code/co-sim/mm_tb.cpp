@@ -1,8 +1,14 @@
+/*
+ * Testbench for kernel_gemm. Compares FPGA output against expected behavior.
+ * Uses NI, NJ, NK, BS from mm_kernel.h (overridden by TCL -cflags).
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "mm_kernel.h"
 #include "my_timer.h"
 
+// Initialize matrices with deterministic values for reproducibility
 static void init_array(float C[NI * NJ], float A[NI * NK], float B[NK * NJ])
 {
   for (int i = 0; i < NI; i++)
@@ -16,6 +22,7 @@ static void init_array(float C[NI * NJ], float A[NI * NK], float B[NK * NJ])
       B[i * NJ + j] = (float)(i * (j + 2) % NJ) / NJ;
 }
 
+// Print sum of C for quick sanity check (deterministic input => deterministic output)
 static void print_array_sum(float C[NI * NJ])
 {
   float sum = 0.0;

@@ -1,7 +1,7 @@
 #ifndef MM_KERNEL_H
 #define MM_KERNEL_H
 
-/* Defaults; overridden via -DNI=, -DNJ=, -DNK=, -DBS= in tcl */
+/* Matrix dims (NI×NJ, NI×NK, NK×NJ) and tile size BS. Overridden by TCL -cflags. */
 #ifndef NI
 #define NI 4096
 #endif
