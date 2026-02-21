@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'kernel_gemm'" level="0">
-<item name = "Date">Fri Feb 20 16:10:55 2026
+<item name = "Date">Fri Feb 20 17:55:56 2026
 </item>
 <item name = "Version">2020.2.2 (Build 3118627 on Tue Feb  9 05:13:49 MST 2021)</item>
 <item name = "Project">proj_csim</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">3385999363, 3385999363, 11.275 sec, 11.275 sec, 3385999364, 3385999364, none</column>
+<column name="">246562819, 246562819, 0.821 sec, 0.821 sec, 246562820, 246562820, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,12 +35,12 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- TILE_LOOP_I_TILE_LOOP_J">3385999360, 3385999360, 826660, -, -, 4096, no</column>
-<column name=" + INIT_LOOP_II_INIT_LOOP_JJ">4114, 4114, 20, 1, 1, 4096, yes</column>
-<column name=" + TILE_LOOP_K">818432, 818432, 12788, -, -, 64, no</column>
-<column name="  ++ LOAD_LOOP_I_LOAD_LOOP_J">4110, 4110, 16, 1, 1, 4096, yes</column>
-<column name="  ++ LOAD_LOOP_I_LOAD_LOOP_J">4110, 4110, 16, 1, 1, 4096, yes</column>
-<column name=" + STORE_LOOP_I_STORE_LOOP_J">4108, 4108, 14, 1, 1, 4096, yes</column>
+<column name="- TILE_LOOP_I_TILE_LOOP_J">246562816, 246562816, 60196, -, -, 4096, no</column>
+<column name=" + INIT_LOOP_II_INIT_LOOP_JJ">274, 274, 20, 1, 1, 256, yes</column>
+<column name=" + TILE_LOOP_K">59648, 59648, 932, -, -, 64, no</column>
+<column name="  ++ LOAD_LOOP_I_LOAD_LOOP_J">270, 270, 16, 1, 1, 256, yes</column>
+<column name="  ++ LOAD_LOOP_I_LOAD_LOOP_J">270, 270, 16, 1, 1, 256, yes</column>
+<column name=" + STORE_LOOP_I_STORE_LOOP_J">268, 268, 14, 1, 1, 256, yes</column>
 </table>
 </item>
 </section>

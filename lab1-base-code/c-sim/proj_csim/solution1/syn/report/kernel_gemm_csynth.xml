@@ -22,52 +22,52 @@
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>3385999363</Best-caseLatency>
-<Average-caseLatency>3385999363</Average-caseLatency>
-<Worst-caseLatency>3385999363</Worst-caseLatency>
-<Best-caseRealTimeLatency>11.275 sec</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>11.275 sec</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>11.275 sec</Worst-caseRealTimeLatency>
-<Interval-min>3385999364</Interval-min>
-<Interval-max>3385999364</Interval-max>
+<Best-caseLatency>246562819</Best-caseLatency>
+<Average-caseLatency>246562819</Average-caseLatency>
+<Worst-caseLatency>246562819</Worst-caseLatency>
+<Best-caseRealTimeLatency>0.821 sec</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>0.821 sec</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>0.821 sec</Worst-caseRealTimeLatency>
+<Interval-min>246562820</Interval-min>
+<Interval-max>246562820</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <TILE_LOOP_I_TILE_LOOP_J>
 <TripCount>4096</TripCount>
-<Latency>3385999360</Latency>
-<AbsoluteTimeLatency>11275377610</AbsoluteTimeLatency>
-<IterationLatency>826660</IterationLatency>
+<Latency>246562816</Latency>
+<AbsoluteTimeLatency>821054158</AbsoluteTimeLatency>
+<IterationLatency>60196</IterationLatency>
 <INIT_LOOP_II_INIT_LOOP_JJ>
-<TripCount>4096</TripCount>
-<Latency>4114</Latency>
-<AbsoluteTimeLatency>13699</AbsoluteTimeLatency>
+<TripCount>256</TripCount>
+<Latency>274</Latency>
+<AbsoluteTimeLatency>912</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
 <PipelineDepth>20</PipelineDepth>
 </INIT_LOOP_II_INIT_LOOP_JJ>
 <TILE_LOOP_K>
 <TripCount>64</TripCount>
-<Latency>818432</Latency>
-<AbsoluteTimeLatency>2725378</AbsoluteTimeLatency>
-<IterationLatency>12788</IterationLatency>
+<Latency>59648</Latency>
+<AbsoluteTimeLatency>198627</AbsoluteTimeLatency>
+<IterationLatency>932</IterationLatency>
 <LOAD_LOOP_I_LOAD_LOOP_J>
-<TripCount>4096</TripCount>
-<Latency>4110</Latency>
-<AbsoluteTimeLatency>13686</AbsoluteTimeLatency>
+<TripCount>256</TripCount>
+<Latency>270</Latency>
+<AbsoluteTimeLatency>899</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
 <PipelineDepth>16</PipelineDepth>
 </LOAD_LOOP_I_LOAD_LOOP_J>
 <LOAD_LOOP_I_LOAD_LOOP_J>
-<TripCount>4096</TripCount>
-<Latency>4110</Latency>
-<AbsoluteTimeLatency>13686</AbsoluteTimeLatency>
+<TripCount>256</TripCount>
+<Latency>270</Latency>
+<AbsoluteTimeLatency>899</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
 <PipelineDepth>16</PipelineDepth>
 </LOAD_LOOP_I_LOAD_LOOP_J>
 </TILE_LOOP_K>
 <STORE_LOOP_I_STORE_LOOP_J>
-<TripCount>4096</TripCount>
-<Latency>4108</Latency>
-<AbsoluteTimeLatency>13679</AbsoluteTimeLatency>
+<TripCount>256</TripCount>
+<Latency>268</Latency>
+<AbsoluteTimeLatency>892</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
 <PipelineDepth>14</PipelineDepth>
 </STORE_LOOP_I_STORE_LOOP_J>
@@ -77,10 +77,10 @@
 
 <AreaEstimates>
 <Resources>
-<BRAM_18K>4</BRAM_18K>
-<DSP>335</DSP>
-<FF>52837</FF>
-<LUT>33980</LUT>
+<BRAM_18K>5</BRAM_18K>
+<DSP>93</DSP>
+<FF>21102</FF>
+<LUT>14847</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>

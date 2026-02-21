@@ -1,5 +1,5 @@
 /*
- * ENSC 453/894 Lab 3 - GEMM Kernel for Alveo U50
+ * ENSC 453 Lab 3 - GEMM Kernel for Alveo U50
  * C-sim config: 4096x4096 matrix, 64x64 buffer
  * Load-compute-store tiled structure; no Ping-Pong or memory coalescing.
  */

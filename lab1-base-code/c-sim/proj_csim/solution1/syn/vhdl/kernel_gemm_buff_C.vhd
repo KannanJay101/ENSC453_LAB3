@@ -10,8 +10,8 @@ use ieee.std_logic_unsigned.all;
 entity kernel_gemm_buff_C_ram is 
     generic(
             DWIDTH     : integer := 32; 
-            AWIDTH     : integer := 12; 
-            MEM_SIZE    : integer := 4096
+            AWIDTH     : integer := 8; 
+            MEM_SIZE    : integer := 256
     ); 
     port (
           addr0     : in std_logic_vector(AWIDTH-1 downto 0); 
@@ -92,8 +92,8 @@ use IEEE.std_logic_1164.all;
 entity kernel_gemm_buff_C is
     generic (
         DataWidth : INTEGER := 32;
-        AddressRange : INTEGER := 4096;
-        AddressWidth : INTEGER := 12);
+        AddressRange : INTEGER := 256;
+        AddressWidth : INTEGER := 8);
     port (
         reset : IN STD_LOGIC;
         clk : IN STD_LOGIC;

@@ -1,7 +1,7 @@
 # This script segment is generated automatically by AutoPilot
 
-set id 264
-set name kernel_gemm_mul_27ns_27ns_116_2_1
+set id 72
+set name kernel_gemm_mul_29ns_29ns_120_2_1
 set corename simcore_mul
 set op mul
 set stage_num 2
@@ -11,13 +11,13 @@ set clk_width 1
 set clk_signed 0
 set reset_width 1
 set reset_signed 0
-set in0_width 27
+set in0_width 29
 set in0_signed 0
-set in1_width 27
+set in1_width 29
 set in1_signed 0
 set ce_width 1
 set ce_signed 0
-set out_width 116
+set out_width 120
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ap_gen_simcore_mul] == "ap_gen_simcore_mul"} {
 eval "ap_gen_simcore_mul { \
@@ -85,7 +85,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_multicycle_mul, che
 }
 
 
-set id 265
+set id 73
 set name kernel_gemm_mul_62s_32s_62_5_1
 set corename simcore_mul
 set op mul
@@ -171,14 +171,14 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_multicycle_mul, che
 
 
 # Memory (RAM/ROM)  definition:
-set ID 271
+set ID 79
 set hasByteEnable 0
 set MemName kernel_gemm_buff_A_0
 set CoreName ap_simcore_mem
 set PortList { 2 3 }
 set DataWd 32
-set AddrRange 64
-set AddrWd 6
+set AddrRange 16
+set AddrWd 4
 set impl_style auto
 set TrueReset 0
 set HasInitializer 0
@@ -256,14 +256,14 @@ if {[info proc ::AESL_LIB_VIRTEX::xil_gen_RAM] == "::AESL_LIB_VIRTEX::xil_gen_RA
 
 
 # Memory (RAM/ROM)  definition:
-set ID 272
+set ID 80
 set hasByteEnable 0
 set MemName kernel_gemm_buff_C
 set CoreName ap_simcore_mem
 set PortList { 2 1 }
 set DataWd 32
-set AddrRange 4096
-set AddrWd 12
+set AddrRange 256
+set AddrWd 8
 set impl_style auto
 set TrueReset 0
 set HasInitializer 0
@@ -271,7 +271,7 @@ set IsROM 0
 set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
-set DelayBudget 1.645
+set DelayBudget 1.196
 set ClkPeriod 3.33
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
@@ -401,7 +401,7 @@ dict set axilite_register_dict control $port_control
 if {${::AESL::PGuard_simmodel_gen}} {
 	if {[info proc ::AESL_LIB_XILADAPTER::s_axilite_gen] == "::AESL_LIB_XILADAPTER::s_axilite_gen"} {
 		eval "::AESL_LIB_XILADAPTER::s_axilite_gen { \
-			id 273 \
+			id 81 \
 			corename kernel_gemm_control_axilite \
 			name kernel_gemm_control_s_axi \
 			ports {$port_control} \
@@ -451,7 +451,7 @@ dict set axilite_register_dict control_r $port_control_r
 if {${::AESL::PGuard_simmodel_gen}} {
 	if {[info proc ::AESL_LIB_XILADAPTER::s_axilite_gen] == "::AESL_LIB_XILADAPTER::s_axilite_gen"} {
 		eval "::AESL_LIB_XILADAPTER::s_axilite_gen { \
-			id 274 \
+			id 82 \
 			corename kernel_gemm_control_r_axilite \
 			name kernel_gemm_control_r_s_axi \
 			ports {$port_control_r} \
@@ -472,7 +472,7 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::m_axi_gen] == "::AESL_LIB_XILADAPTER::m_axi_gen"} {
 eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
-    id 275 \
+    id 83 \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
@@ -493,7 +493,7 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::m_axi_gen] == "::AESL_LIB_XILADAPTER::m_axi_gen"} {
 eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
-    id 276 \
+    id 84 \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 

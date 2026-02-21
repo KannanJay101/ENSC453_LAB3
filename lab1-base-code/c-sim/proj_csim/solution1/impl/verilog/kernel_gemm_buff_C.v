@@ -6,8 +6,8 @@
 module kernel_gemm_buff_C_ram (addr0, ce0, d0, we0, q0, addr1, ce1, q1,  clk);
 
 parameter DWIDTH = 32;
-parameter AWIDTH = 12;
-parameter MEM_SIZE = 4096;
+parameter AWIDTH = 8;
+parameter MEM_SIZE = 256;
 
 input[AWIDTH-1:0] addr0;
 input ce0;
@@ -58,8 +58,8 @@ module kernel_gemm_buff_C(
     q1);
 
 parameter DataWidth = 32'd32;
-parameter AddressRange = 32'd4096;
-parameter AddressWidth = 32'd12;
+parameter AddressRange = 32'd256;
+parameter AddressWidth = 32'd8;
 input reset;
 input clk;
 input[AddressWidth - 1:0] address0;

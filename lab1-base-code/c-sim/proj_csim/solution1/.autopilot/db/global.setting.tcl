@@ -43,7 +43,7 @@ set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xcu50:-fsvh2104:-2-e
 set SourceFiles {sc {} c ../../mm_kernel.cpp}
-set SourceFlags {sc {} c {{ -DNI=4096 -DNJ=4096 -DNK=4096 -DBS=64} {}}}
+set SourceFlags {sc {} c {{ -DNI=4096 -DNJ=4096 -DNK=4096 -DBS=16} {}}}
 set DirectiveFile /local-scratch/localhome/kja56/ENSC453_LAB3/lab1-base-code/c-sim/proj_csim/solution1/solution1.directive
 set TBFiles {verilog ../../mm_tb.cpp bc ../../mm_tb.cpp sc ../../mm_tb.cpp vhdl ../../mm_tb.cpp c {} cas ../../mm_tb.cpp}
 set SpecLanguage C

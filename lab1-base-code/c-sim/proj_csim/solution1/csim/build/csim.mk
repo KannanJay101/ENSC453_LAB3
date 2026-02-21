@@ -73,12 +73,12 @@ all: $(TARGET)
 
 $(ObjDir)/mm_tb.o: ../../../../mm_tb.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling ../../../../mm_tb.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(CC) ${CCFLAG} -c -MMD -DNI=4096 -DNJ=4096 -DNK=4096 -DBS=64 -Wno-unknown-pragmas -Wno-unknown-pragmas  $(IFLAG) $(DFLAG) $< -o $@ ; \
+	$(Verb)  $(CC) ${CCFLAG} -c -MMD -DNI=4096 -DNJ=4096 -DNK=4096 -DBS=16 -Wno-unknown-pragmas -Wno-unknown-pragmas  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/mm_tb.d
 
 $(ObjDir)/mm_kernel.o: ../../../../mm_kernel.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling ../../../../mm_kernel.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(CC) ${CCFLAG} -c -MMD -DNI=4096 -DNJ=4096 -DNK=4096 -DBS=64  $(IFLAG) $(DFLAG) $< -o $@ ; \
+	$(Verb)  $(CC) ${CCFLAG} -c -MMD -DNI=4096 -DNJ=4096 -DNK=4096 -DBS=16  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/mm_kernel.d

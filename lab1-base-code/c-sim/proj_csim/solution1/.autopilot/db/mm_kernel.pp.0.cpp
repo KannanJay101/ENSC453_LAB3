@@ -162,11 +162,11 @@ extern "C" {
 __attribute__((sdx_kernel("kernel_gemm", 0))) void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, int nj, int nk);
 # 8 "mm_kernel.cpp" 2
 
-static void load_input_tile(float* global_ptr, float local_buff[64][64],
+static void load_input_tile(float* global_ptr, float local_buff[16][16],
                             int row_offset, int col_offset, int max_row, int max_col)
 {
-    LOAD_LOOP_I: for (int i = 0; i < 64; i++) {
-        LOAD_LOOP_J: for (int j = 0; j < 64; j++) {
+    LOAD_LOOP_I: for (int i = 0; i < 16; i++) {
+        LOAD_LOOP_J: for (int j = 0; j < 16; j++) {
 #pragma HLS PIPELINE II=1
  int r = row_offset + i;
             int c = col_offset + j;
@@ -175,17 +175,17 @@ static void load_input_tile(float* global_ptr, float local_buff[64][64],
     }
 }
 
-static void compute_tile(float buff_A[64][64], float buff_B[64][64],
-                         float buff_C[64][64], float alpha)
+static void compute_tile(float buff_A[16][16], float buff_B[16][16],
+                         float buff_C[16][16], float alpha)
 {
 #pragma HLS ARRAY_PARTITION variable=buff_A dim=2 complete
 #pragma HLS ARRAY_PARTITION variable=buff_B dim=1 complete
 
- COMPUTE_LOOP_I: for (int i = 0; i < 64; i++) {
-        COMPUTE_LOOP_J: for (int j = 0; j < 64; j++) {
+ COMPUTE_LOOP_I: for (int i = 0; i < 16; i++) {
+        COMPUTE_LOOP_J: for (int j = 0; j < 16; j++) {
 #pragma HLS PIPELINE II=1
  float sum = 0.0f;
-            COMPUTE_LOOP_K: for (int k = 0; k < 64; k++) {
+            COMPUTE_LOOP_K: for (int k = 0; k < 16; k++) {
 #pragma HLS UNROLL
  sum += buff_A[i][k] * buff_B[k][j];
             }
@@ -194,11 +194,11 @@ static void compute_tile(float buff_A[64][64], float buff_B[64][64],
     }
 }
 
-static void store_output_tile(float* global_ptr, float local_buff[64][64],
+static void store_output_tile(float* global_ptr, float local_buff[16][16],
                               int row_offset, int col_offset, int max_row, int max_col)
 {
-    STORE_LOOP_I: for (int i = 0; i < 64; i++) {
-        STORE_LOOP_J: for (int j = 0; j < 64; j++) {
+    STORE_LOOP_I: for (int i = 0; i < 16; i++) {
+        STORE_LOOP_J: for (int j = 0; j < 16; j++) {
 #pragma HLS PIPELINE II=1
  int r = row_offset + i;
             int c = col_offset + j;
@@ -223,17 +223,17 @@ __attribute__((sdx_kernel("kernel_gemm", 0))) void kernel_gemm(float* C, float* 
 #pragma HLS INTERFACE s_axilite port=nk bundle=control
 #pragma HLS INTERFACE s_axilite port=return bundle=control
 
- float buff_A[64][64];
-    float buff_B[64][64];
-    float buff_C[64][64];
+ float buff_A[16][16];
+    float buff_B[16][16];
+    float buff_C[16][16];
 
-    TILE_LOOP_I: for (int i = 0; i < ni; i += 64) {
+    TILE_LOOP_I: for (int i = 0; i < ni; i += 16) {
 #pragma HLS loop_tripcount min=64 max=64 avg=64
- TILE_LOOP_J: for (int j = 0; j < nj; j += 64) {
+ TILE_LOOP_J: for (int j = 0; j < nj; j += 16) {
 #pragma HLS loop_tripcount min=64 max=64 avg=64
 
- INIT_LOOP_II: for (int ii = 0; ii < 64; ii++) {
-                INIT_LOOP_JJ: for (int jj = 0; jj < 64; jj++) {
+ INIT_LOOP_II: for (int ii = 0; ii < 16; ii++) {
+                INIT_LOOP_JJ: for (int jj = 0; jj < 16; jj++) {
 #pragma HLS PIPELINE II=1
  int r = i + ii;
                     int c = j + jj;
@@ -241,7 +241,7 @@ __attribute__((sdx_kernel("kernel_gemm", 0))) void kernel_gemm(float* C, float* 
                 }
             }
 
-            TILE_LOOP_K: for (int k = 0; k < nk; k += 64) {
+            TILE_LOOP_K: for (int k = 0; k < nk; k += 16) {
 #pragma HLS loop_tripcount min=64 max=64 avg=64
  load_input_tile(A, buff_A, i, k, ni, nk);
                 load_input_tile(B, buff_B, k, j, nk, nj);

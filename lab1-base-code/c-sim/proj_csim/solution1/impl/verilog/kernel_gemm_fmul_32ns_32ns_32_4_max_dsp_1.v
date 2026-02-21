@@ -7,7 +7,7 @@
 
 module kernel_gemm_fmul_32ns_32ns_32_4_max_dsp_1
 #(parameter
-    ID         = 66,
+    ID         = 18,
     NUM_STAGE  = 4,
     din0_WIDTH = 32,
     din1_WIDTH = 32,

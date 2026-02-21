@@ -13,7 +13,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"grp_compute_tile_fu_2806/grp_compute_tile_fu_2806_activity": {
+				"grp_compute_tile_fu_1082/grp_compute_tile_fu_1082_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
