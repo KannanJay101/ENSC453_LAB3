@@ -1,0 +1,17 @@
+ENSC 453/894 Lab 3 - Submission Instructions
+============================================
+
+Required for submission:
+  1. c-sim/     - C-sim and HLS synthesis (4096x4096, BS=64)
+  2. co-sim/    - Co-simulation (32x32, BS=16)
+  3. Lab report - Add lab_report.pdf (speedup and resource use for each optimization)
+
+Zip steps (from lab1-base-code parent directory):
+  cd /path/to/ENSC453_LAB3
+  mv lab1-base-code YOUR_LAB_GROUP
+  zip -r YOUR_LAB_GROUP.zip YOUR_LAB_GROUP
+
+Run HLS:
+  source setup_vitis.sh
+  vitis_hls -f c-sim/run_hls.tcl    # C-sim + synthesis
+  vitis_hls -f co-sim/run_hls.tcl   # C-sim + synthesis + co-sim

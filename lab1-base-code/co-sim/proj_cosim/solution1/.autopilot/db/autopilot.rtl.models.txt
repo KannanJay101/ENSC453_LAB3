@@ -1,0 +1,12 @@
+kernel_gemm_fadd_32ns_32ns_32_7_full_dsp_1
+kernel_gemm_fmul_32ns_32ns_32_4_max_dsp_1
+kernel_gemm_mul_29ns_29ns_120_2_1
+kernel_gemm_mul_62s_32s_62_5_1
+kernel_gemm_buff_A_0
+kernel_gemm_buff_C
+kernel_gemm_control_s_axi
+kernel_gemm_control_r_s_axi
+kernel_gemm_gmem0_m_axi
+kernel_gemm_gmem1_m_axi
+compute_tile
+kernel_gemm

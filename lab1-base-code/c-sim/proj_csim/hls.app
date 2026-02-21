@@ -1,4 +1,4 @@
-<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" projectType="C/C++" top="kernel_gemm" name="proj_csim">
+<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" top="kernel_gemm" name="proj_csim">
     <includePaths/>
     <libraryFlag/>
     <files>

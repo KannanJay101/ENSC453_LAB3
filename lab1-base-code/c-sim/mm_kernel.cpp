@@ -69,9 +69,9 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
     float buff_C[BS][BS];
 
     TILE_LOOP_I: for (int i = 0; i < ni; i += BS) {
-        #pragma HLS loop_tripcount min=NI/BS max=NI/BS avg=NI/BS
+        #pragma HLS loop_tripcount min=64 max=64 avg=64
         TILE_LOOP_J: for (int j = 0; j < nj; j += BS) {
-            #pragma HLS loop_tripcount min=NJ/BS max=NJ/BS avg=NJ/BS
+            #pragma HLS loop_tripcount min=64 max=64 avg=64
 
             INIT_LOOP_II: for (int ii = 0; ii < BS; ii++) {
                 INIT_LOOP_JJ: for (int jj = 0; jj < BS; jj++) {
@@ -83,7 +83,7 @@ void kernel_gemm(float* C, float* A, float* B, float alpha, float beta, int ni, 
             }
 
             TILE_LOOP_K: for (int k = 0; k < nk; k += BS) {
-                #pragma HLS loop_tripcount min=NK/BS max=NK/BS avg=NK/BS
+                #pragma HLS loop_tripcount min=64 max=64 avg=64
                 load_input_tile(A, buff_A, i, k, ni, nk);
                 load_input_tile(B, buff_B, k, j, nk, nj);
                 compute_tile(buff_A, buff_B, buff_C, alpha);
